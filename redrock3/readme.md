@@ -1,5 +1,7 @@
 # JavaScript 基础入门
 
+[TOC]
+
 **变量声明：```var```**
 
 **输出消息：```console.log```**
@@ -34,9 +36,9 @@ console.log(words)
 */
 ```
 
-## 基本语句
+# 基本语句
 
-### 判断和循环
+## 判断和循环
 
 ```javascript
 if (condition1) {
@@ -64,7 +66,7 @@ switch(n) {
 
 
 
-### 运算符
+## 运算符
 
 ```javascript
 // 算术运算符
@@ -84,7 +86,7 @@ switch(n) {
 // 如果 “？”前 是真者执行 “：”前 ，反之执行“：”后
 ```
 
-##### **==** 与 **===** 的区别
+### **==** 与 **===** 的区别
 
 ```javascript
 /* ==  抽象相等，比较时，会先进行类型转换，然后再比较值。*/
@@ -130,7 +132,7 @@ true ? console.log(2) : console.log(3) : console.log(4)
 console.log(2) // 2
 ```
 
-## **基本类型**
+# 基本类型
 
 （基本数值、基本数据类型）是指非对象并且无方法的数据。
 
@@ -143,7 +145,7 @@ console.log(2) // 2
 - **undefined**
 - **symbol** ( ES6 新增 )
 
-### string
+## string
 
 ```javascript
 var str1 = 'abc'
@@ -160,9 +162,9 @@ console.log(str3)
 
 
 
-#### 字符串操作
+**字符串操作**
 
-##### **concat()** 
+### concat()
 
 ```
 arrayObject.concat(arrayX,arrayX,......,arrayX)
@@ -184,7 +186,7 @@ console.log(hello.concat("Kevin", " have a nice day."))
 
 
 
-##### indexOf()
+### indexOf()
 
 ```
 stringObject.indexOf(searchvalue[,fromindex])
@@ -210,7 +212,7 @@ stringObject.indexOf(searchvalue[,fromindex])
 
 
 
-##### includes() 
+### includes() 
 
 方法用于判断一个字符串是否包含在另一个字符串中，根据情况返回 true 或 false。
 
@@ -222,7 +224,7 @@ stringObject.indexOf(searchvalue[,fromindex])
 
 
 
-##### replace()
+### replace()
 
 ```
 stringObject.replace(regexp/substr,replacement)
@@ -284,7 +286,7 @@ name.replace(/"([^"]*)"/g, "'$1'");
 
 
 
-##### slice()
+### slice()
 
 ```
 stringObject.slice(start,end)
@@ -306,7 +308,7 @@ console.log(str2) // OUTPUT: morning is upon u
 
 
 
-##### split()
+### split()
 
 [JS字符串截取函数slice(),substring(),substr()的区别](https://juejin.im/post/59e2af3151882578cf573319)
 
@@ -327,7 +329,7 @@ stringObject.split(separator[,howmany])
 
 
 
-##### trim()
+### trim()
 
  方法会从一个字符串的两端删除空白字符。
 
@@ -339,7 +341,7 @@ console.log(orig.trim()) // 'foo'
 
 
 
-##### substring()
+### substring()
 
 [JS字符串截取函数slice(),substring(),substr()的区别](https://juejin.im/post/59e2af3151882578cf573319)
 
@@ -353,7 +355,7 @@ console.log(anyString.substring(0,3)) // Moz
 
 
 
-### number
+## number
 
 JavaScript 内部，所有数字都是以64位浮点数形式储存，即使整数也是如此。
 
@@ -371,15 +373,15 @@ console.log(0.1 + 0.2) // 3.0000000000004
 
 
 
-### boolean 
+## boolean 
 
 即布尔值，它有两种取值 true 或者 false 。
 
-### undefined 
+## undefined 
 
 没有被定义、没有被赋值。
 
-### null
+## null
 
 表示空值。
 
@@ -396,7 +398,7 @@ if ('' || "" || undefined || null || false || 0) {
 
 **[null, undefined 和布尔值](https://wangdoc.com/javascript/types/null-undefined-boolean.html)**
 
-## 引用类型
+# 引用类型
 
 ( 对象类型 )
 
@@ -404,7 +406,7 @@ if ('' || "" || undefined || null || false || 0) {
 - **Array** ( 数组 )
 - **Function** ( 函数 )
 
-### Object
+## Object
 
 对象（object）是 JavaScript 语言的核心概念，也是最重要的数据类型。
 
@@ -448,7 +450,7 @@ for (var key in obj) {
 }
 ```
 
-### Array
+## Array
 
 数组对象是一个有序的数据（ 数据可以是原始类型或对象类型 ）集合。相对于变量，数组可用于在一个变量中存储多个变量值。
 
@@ -480,6 +482,8 @@ for (var value of entries) {
 }
 // a b c
 
+
+// 对象型数组 ??
 var obj = {
   0: 'a',
   1: 'b',
@@ -497,23 +501,11 @@ obj.length // 3
 
 **数组操作**
 
-**some()** 方法测试数组中的某些元素是否通过由提供的函数实现的测试。
+### some()
 
+方法测试数组中的**某些**元素是否通过由提供的函数实现的测试。
 
-
-```
-
-```
-
-
-
-
-
-
-
-
-
-```
+```javascript
 function isBiggerThan10(element, index, array) {
   return element > 10
 }
@@ -524,23 +516,11 @@ function isBiggerThan10(element, index, array) {
 
 
 
-**every()** 方法测试数组的所有元素是否都通过了指定函数的测试。
+### every()
 
+方法测试数组的**所有**元素是否都通过了指定函数的测试。
 
-
-```
-
-```
-
-
-
-
-
-
-
-
-
-```
+```javascript
 function isBigEnough(element, index, array) {
   return (element >= 10)
 }
@@ -553,23 +533,11 @@ passed = [12, 54, 18, 130, 44].every(isBigEnough)
 
 
 
-**filter()** 方法创建一个新数组, 其包含通过所提供函数实现的测试的所有元素。
+### filter()
 
+方法创建一个新数组, 其包含**通过所提供函数实现的测试的所有元素**。
 
-
-```
-
-```
-
-
-
-
-
-
-
-
-
-```
+```javascript
 function isBigEnough(element) {
   return element >= 10
 }
@@ -580,23 +548,11 @@ var filtered = [12, 5, 8, 130, 44].filter(isBigEnough)
 
 
 
-**find()** 方法返回数组中满足提供的测试函数的第一个元素的值。否则返回 `undefined` 。
+### find()
 
+方法返回数组中满足提供的测试函数的**第一个**元素的值。否则返回 `undefined` 。
 
-
-```
-
-```
-
-
-
-
-
-
-
-
-
-```
+```javascript
 var inventory = [
     {name: 'apples', quantity: 2},
     {name: 'bananas', quantity: 0},
@@ -612,23 +568,11 @@ console.log(inventory.find(findCherries)) // { name: 'cherries', quantity: 5 }
 
 
 
-**map()** 方法创建一个新数组，其结果是该数组中的每个元素都调用一个提供的函数后返回的结果。
+### map()
 
+方法创建一个新数组，其结果是该数组中的每个元素都调用一个提供的函数后返回的结果。
 
-
-```
-
-```
-
-
-
-
-
-
-
-
-
-```
+```javascript
 var numbers = [1, 4, 9]
 var roots = numbers.map(Math.sqrt)
 // roots的值为[1, 2, 3], numbers的值仍为[1, 4, 9]
@@ -636,50 +580,36 @@ var roots = numbers.map(Math.sqrt)
 
 
 
-**forEach()** 方法对数组的每个元素执行一次提供的函数。
+### forEach()
+
+方法对数组的每个元素执行一次提供的函数。
 
 
 
-```
-
-```
-
-
-
-
-
-
-
-
-
-```
+```javascript
 const items = ['item1', 'item2', 'item3']
 const copy = []
 
 items.forEach(function(item){
   copy.push(item)
 })
+/**
+* (3) ["item1", "item2", "item3"]
+* 0: "item1"
+* 1: "item2"
+* 2: "item3"
+* length: 3
+* __proto__: Array(0)
+**/
 ```
 
 
 
-**join()** 方法将一个数组 ( 或一个类数组对象 ) 的所有元素连接成一个字符串并返回这个字符串。
+### join()
 
+方法将一个数组 ( 或一个类数组对象 ) 的所有元素连接成一个字符串并返回这个字符串。
 
-
-```
-
-```
-
-
-
-
-
-
-
-
-
-```
+```javascript
 var a = ['Wind', 'Rain', 'Fire']
 var myVar1 = a.join()      // myVar1的值变为"Wind,Rain,Fire"
 var myVar2 = a.join(', ')  // myVar2的值变为"Wind, Rain, Fire"
@@ -689,161 +619,117 @@ var myVar4 = a.join('')    // myVar4的值变为"WindRainFire"
 
 
 
-**push()** 方法将一个或多个元素添加到数组的末尾，并返回该数组的新长度。
+### push()
 
+方法将一个或多个元素添加到数组的末尾，并返回该数组的新长度。
 
-
-```
-
-```
-
-
-
-
-
-
-
-
-
-```
+```javascript
 var sports = ["soccer", "baseball"]
 var total = sports.push("football", "swimming")
 
-console.log(sports)
-// ["soccer", "baseball", "football", "swimming"]
+
+total // 4
+sports // (4) ["soccer", "baseball", "football", "swimming"]
 ```
 
 
 
-**pop()** 方法从数组中删除最后一个元素，并返回该元素的值。此方法更改数组的长度。
+### pop()
 
+方法从数组中删除最后一个元素，并返回该元素的值。此方法更改数组的长度。
 
-
-```
-
-```
-
-
-
-
-
-
-
-
-
-```
+```javascript
 let myFish = ["angel", "clown", "mandarin", "surgeon"]
 
 let popped = myFish.pop()
 
-console.log(myFish)
-// ["angel", "clown", "mandarin"]
+console.log(myFish)  // (3) ["angel", "clown", "mandarin"]
+popped  // "surgeon"
 ```
 
 
 
-**shift()** 方法从数组中删除第一个元素，并返回该元素的值。此方法更改数组的长度。
+### shift()
+
+方法从数组中删除第一个元素，并返回该元素的值。此方法更改数组的长度。
 
 
 
-```
-
-```
-
-
-
-
-
-
-
-
-
-```
+```javascript
 let myFish = ['angel', 'clown', 'mandarin', 'surgeon']
 
-myFish.shift()
+var first = myFish.shift()
+first // 'angel'
 
 console.log(myFish) // ['clown', 'mandarin', 'surgeon']
 ```
 
 
 
-**unshift()** 方法将一个或多个元素添加到数组的开头，并返回该数组的新长度。
+### unshift()
 
+方法将一个或多个元素添加到数组的开头，并返回该数组的新长度。
 
-
-```
-
-```
-
-
-
-
-
-
-
-
-
-```
+```javascript
 var arr = [1, 2]
 
-arr.unshift(0)
+arr.unshift(0) // 3
 
 // arr is [0, 1, 2]
 ```
 
 
 
-**reduce()** 方法对累计器和数组中的每个元素（从左到右）应用一个函数，将其简化为单个值。
+### reduce()
 
-`reduce` 为数组中的每一个元素依次执行 `callback` 函数，不包括数组中被删除或从未被赋值的元素，接受四个参数：
+方法对累计器和数组中的每个元素（从左到右）应用一个函数，将其简化为单个值。
+
+`reduce` 为数组中的每一个元素依次执行 `callback` 函数，不包括数组中被删除或从未被赋值的元素，接受四个参数:
 
 - accumulator 累计器
 - currentValue 当前值
 - currentIndex 当前索引值
 - array 数组
 
-回调函数第一次执行时，`accumulator` 和 `currentValue` 的取值有两种情况：如果调用 `reduce()` 时提供了 `initialValue` ，`accumulator` 取值为 `initialValue` ，`currentValue` 取数组中的第一个值；如果没有提供 `initialValue`，那么 `accumulator` 取数组中的第一个值，`currentValue` 取数组中的第二个值。
+回调函数第一次执行时，`accumulator` 和 `currentValue` 的取值有两种情况：
 
+1. 如果调用 `reduce()` 时提供了 `initialValue` ，`accumulator` **取值为** `initialValue` ，`currentValue` 取数组中的**第一个值**；
+2. 如果没有提供 `initialValue`，那么 `accumulator` 取数组中的**第一个值**，`currentValue` 取数组中的**第二个值**。
 
+**第一种情况**
 
+```js
+[0, 1, 2, 3, 4].reduce(function(accumulator, currentValue, currentIndex, array){
+  return accumulator + currentValue;
+});
 ```
 
-```
+| `callback`  | `accumulator` | `currentValue` | `currentIndex` | `array`           | return value |
+| ----------- | ------------- | -------------- | -------------- | ----------------- | ------------ |
+| first call  | `0`           | `1`            | `1`            | `[0, 1, 2, 3, 4]` | `1`          |
+| second call | `1`           | `2`            | `2`            | `[0, 1, 2, 3, 4]` | `3`          |
+| third call  | `3`           | `3`            | `3`            | `[0, 1, 2, 3, 4]` | `6`          |
+| fourth call | `6`           | `4`            | `4`            | `[0, 1, 2, 3, 4]` | `10`         |
 
+**第二种情况**
 
-
-
-
-
-
-
-
-```
-var initialValue = 0
-
+```js
 [0, 1, 2, 3, 4].reduce(function(accumulator, currentValue, currentIndex, array){
   return accumulator + currentValue
-}, initialValue)
+}, 10)
 ```
 
+| `callback`  | `currentValue` | `accumulator` | `currentIndex` | `array`           | return value |
+| ----------- | -------------- | ------------- | -------------- | ----------------- | ------------ |
+| first call  | `0`            | `10`          | `0`            | `[0, 1, 2, 3, 4]` | `10`         |
+| second call | `1`            | `10`          | `1`            | `[0, 1, 2, 3, 4]` | `11`         |
+| third call  | `2`            | `11`          | `2`            | `[0, 1, 2, 3, 4]` | `13`         |
+| fourth call | `3`            | `13`          | `3`            | `[0, 1, 2, 3, 4]` | `16`         |
+| fifth call  | `4`            | `16`          | `4`            | `[0, 1, 2, 3, 4]` | `20`         |
 
+### reverse()
 
-**reverse()** 方法将数组中元素的位置颠倒。
-
-
-
-```
-
-```
-
-
-
-
-
-
-
-
+方法将数组中元素的位置颠倒。
 
 ```
 var myArray = ['one', 'two', 'three']
@@ -854,25 +740,11 @@ console.log(myArray) // ['three', 'two', 'one']
 
 
 
-**Function**
+## Function
 
 函数是一个可以被其他代码或其自身调用的代码片段，或者是一个指该函数的变量。
 
-
-
-```
-
-```
-
-
-
-
-
-
-
-
-
-```
+```js
 // 函数声明
 function foo() {
     
@@ -901,124 +773,76 @@ baz(0)
 
 
 
-**基本类型与引用类型的区别**
+### 基本类型与引用类型的区别
 
-基本类型的检测：`typeof`
+#### 基本类型的检测
 
+`typeof`
 
-
-```
-
-```
-
-
-
-
-
-
-
-
-
-```
+```js
 typeof 'abc'      // string
 typeof 123        // number
 typeof true       // boolean
 typeof undefined  // undefined
 
-typeof null 
-typeof {}   
-typeof []  
+typeof null // "object"
+typeof {}   // "object"
+typeof []   // "object"
 ```
 
 
 
-引用类型的检测：`instanceof`
+#### 引用类型的检测
 
+`instanceof`
 
-
-```
-
-```
-
-
-
-
-
-
-
-
-
-```
+```js
 var obj = {}
 var arr = []
 var func = function foo() {}
 
-obj instanceof Object
-arr instanceof Array
-func instanceof Function
+obj instanceof Object        // true
+arr instanceof Array         // true
+func instanceof Function     // true
 
-arr instanceof Object
-func instanceof Object
+arr instanceof Object        // true
+func instanceof Object       // true
+// js中一切皆对象
 ```
 
 
 
-栈内存与堆内存：
+# 函数
+
+## 栈内存与堆内存
 
 栈中存储的是基础变量以及一些对象的引用变量，基础变量的值是存储在栈中，而引用变量存储在栈中的是指向堆中的数组或者对象的地址。
 
 对象被保存在堆内存中，我们平时操作对象其实是操作的对象的引用或者说是指向对象的指针。
 
-![img](https://user-gold-cdn.xitu.io/2017/2/9/cff638f965972dfdf53273e7976dcdd9?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
+![img](assets/cff638f965972dfdf53273e7976dcdd9)
 
-
-
-```
-
-```
-
-
-
-
-
-
-
-
-
-```
+```js
 var a = 123
 var b = a
 a = 456
-console.log(b)
+console.log(b) // 123
+console.log(a) // 456
 
 var obj1 = { age: 18 }
 var obj2 = obj1
 obj2.age = 22
-console.log(obj1.age)
+console.log(obj1.age) // 22
 ```
 
 
 
-**作用域**
+## 作用域
 
 LHS 查询 与 RHS 查询：
 
 - LHS 查询指的是找到变量容器本身，并对其进行 **赋值** 。
 - RHS 查询指的是获取变量得源值，可以理解为 **取值** 。
-
-
-
-```
-
-```
-
-
-
-
-
-
-
-
 
 ```
 var a
@@ -1042,21 +866,7 @@ console.log(a)
 - 函数作用域
 - 块级作用域 ( let、with、try / catch )
 
-
-
-```
-
-```
-
-
-
-
-
-
-
-
-
-```
+```js
 // 全局作用域
 var a = 'Barry'
 
@@ -1066,32 +876,39 @@ function foo() {
     console.log(a)
 }
 
-foo()
+foo()            // Allen
+console.log(a)   // Barry
 ```
 
+**let**
 
+```js
+function varTest() {
+  var x = 1;
+  if (true) {
+    var x = 2;  // 同样的变量!
+    console.log(x);  // 2
+  }
+  console.log(x);  // 2
+}
 
-词法作用域与动态作用域：
+function letTest() {
+  let x = 1;
+  if (true) {
+    let x = 2;  // 不同的变量
+    console.log(x);  // 2
+  }
+  console.log(x);  // 1
+}
+```
+
+#### 词法作用域与动态作用域
 
 作用域共有两种工作模型，词法作用域与动态作用域，而在 JavaScript 中采用的是词法作用域模型。
 
 词法作用域是由 **写代码时将变量和块作用域写在哪里** 来决定的。
 
-
-
-```
-
-```
-
-
-
-
-
-
-
-
-
-```
+```js
 var a = 'Barry'
 
 function bar() {
@@ -1103,34 +920,21 @@ function foo() {
     bar()
 }
 
-foo()
+foo() // 'Barry'
 ```
 
 
 
-**变量提升与函数提升**
+## 变量提升与函数提升
 
 简单的来讲，在执行 JavaScript 代码的时候会经过两个阶段，第一个阶段为编译阶段，这个时候包括变量和函数在内的所有 **声明** 会被首先处理，第二个阶段即为执行阶段，像 **赋值、运算、函数执行** 这些操作就是在这个阶段进行的。因此，我们才有了变量提升和函数提升这一概念。
 
-
-
-```
-
-```
-
-
-
-
-
-
-
-
-
-```
+```js
 // 变量提升
-console.log(a)
+console.log(a) // undefined
 var a = 2
 
+// 上面的代码相当于
 var a
 console.log(a)
 a = 2
@@ -1140,40 +944,30 @@ foo(2, 8)
 
 function foo(x, y) {
     return x + y
-}
+} // 10
+
 
 // 函数内部的变量提升
 var a = 2
 
 function foo() {
+    // var a;
     console.log(a)
     var a = 4
 }
 
-foo()
+foo() // undefined
 ```
 
 
 
-**函数调用栈 ( Call Stack )**
+## 函数调用栈 
+
+( Call Stack )
 
 函数调用栈是一种数据结构，它记录了我们在程序中的位置。如果我们运行到一个函数，它就会将其放置到栈顶。当从这个函数返回的时候，就会将这个函数从栈顶弹出，这就是调用栈做的事情。
 
-
-
-```
-
-```
-
-
-
-
-
-
-
-
-
-```
+```js
 function multiply(x, y) {
     return x * y
 }
@@ -1188,21 +982,7 @@ printSquare(5)
 
 
 
-![img](https://user-gold-cdn.xitu.io/2017/11/11/bc37a6231fca3b0aa3cd36369e866837?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
-
-
-
-```
-
-```
-
-
-
-
-
-
-
-
+![img](assets/bc37a6231fca3b0aa3cd36369e866837)
 
 ```
 function foo() {
@@ -1224,20 +1004,6 @@ start()
 
 堆栈溢出：( 慎用递归函数，使用时需设置阀值条件以便退出递归 )
 
-
-
-```
-
-```
-
-
-
-
-
-
-
-
-
 ```
 function recusive(n) {
     return recusive(n * 2)
@@ -1248,25 +1014,11 @@ recusive(2) // Maximum call stack size exceeded
 
 
 
-**函数参数**
+### 函数参数
 
 arguments 对象：
 
-
-
-```
-
-```
-
-
-
-
-
-
-
-
-
-```
+```js
 function foo(a, b, c) {
     console.log(arguments[0])
     console.log(arguments[1])
@@ -1284,35 +1036,29 @@ function foo(a, b, c) {
 }
 
 foo(1, 2, 3)
+/*
+1
+2
+3
+3
+object
+[1, 2, 3]
+*/
 ```
 
 
 
-参数传递：
+#### 参数传递
 
 函数内部参数的传递包含 **值传递** 和 **引用传递** 。
 
 值传递是完全独立的拷贝，互不干涉。
 
-对象是通过引用传递，变量赋值只会将地址传递过去。
+对象是通过引用传递，变量赋值只会将**地址**传递过去。
 
 如果我们将一个已经赋值的变量重新赋值，那么它将包含新的数据或则引用地址。
 
-
-
-```
-
-```
-
-
-
-
-
-
-
-
-
-```
+```js
 var a = 2
 
 function change(person, a) {
@@ -1335,32 +1081,18 @@ var person1 = {
 
 var person2 = change(person1, a)
 
-console.log(a)
-console.log(person1)
-console.log(person2)
+console.log(a)          // 2
+console.log(person1)    // name Alex age 30
+console.log(person2)    // name John age 25
 ```
 
 
 
-**闭包**
+### 闭包
 
 什么是闭包？
 
 当函数可以记住并访问所在的词法作用域时，就产生了闭包，即使函数是在当前词法作用域之外执行。
-
-
-
-```
-
-```
-
-
-
-
-
-
-
-
 
 ```
 // 全局作用域
@@ -1379,21 +1111,7 @@ fn() // 123
 
 
 
-**模块化机制**
-
-
-
-```
-
-```
-
-
-
-
-
-
-
-
+### 模块化机制
 
 ```
 function createMyHero() {
@@ -1434,21 +1152,7 @@ hero.skillAttack()
 
 **dig** 函数，给定任意一个对象作为函数的第一个参数，函数的第二个参数为该对象中的某个键名，通过这个键名可以直接输出对应的键值，不管对象里面的层级有多深。
 
-
-
-```
-
-```
-
-
-
-
-
-
-
-
-
-```
+```js
 function dig(obj, target) {
     // ...
 }
@@ -1470,21 +1174,7 @@ dig(data, 'level4') // undefined
 
 **merge** 函数，合并任意两个对象为一个新对象，若两个对象有相同键名，则将其键值合并，放在一个数组中作为新对象相应键名下的键值。若两个对象中有其中一个对象没有的属性，该属性也应该出现在合并后的新对象中。
 
-
-
-```
-
-```
-
-
-
-
-
-
-
-
-
-```
+```js
 function merge(obj1, obj2) {
     // ...
 }
@@ -1511,28 +1201,13 @@ merge(obj1, obj2)
 
 **stringPermutations** 函数，任意给出一个全英文字母的字符串，以每个英文字母为单位将这个字符串进行排列组合，并将所有的可能放在一个数组中打印输出。
 
-
-
-```
-
-```
-
-
-
-
-
-```
+```js
 function stringPermutations(str) {
     // ...
 }
 ```
 
-
-
-
-
-```
-
+```js
 stringPermutations('abc') // ['abc','acb','bac','bca','cab','cba']
 ```
 
@@ -1545,5 +1220,3 @@ stringPermutations('abc') // ['abc','acb','bac','bca','cab','cba']
 > **Level 2：** 实现上面三个函数中的任意两个函数
 >
 > **Level 3：** 实现上面三个函数中的任意三个函数
-
- 
