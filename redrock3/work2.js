@@ -64,15 +64,14 @@ function merge(obj1, obj2) {
         // console.log(value);
     }
     console.log(tempObject);
+}
 
+// 判断对象里的类型是否是数组
+// https://wangdoc.com/javascript/stdlib/object.html#tostring-%E7%9A%84%E5%BA%94%E7%94%A8%EF%BC%9A%E5%88%A4%E6%96%AD%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B
+function typeString(object) {
+    return Object.prototype.toString.call(object).slice(8,-1).toLowerCase();
+}
 
-    // 判断对象里的类型是否是数组
-    // https://wangdoc.com/javascript/stdlib/object.html#tostring-%E7%9A%84%E5%BA%94%E7%94%A8%EF%BC%9A%E5%88%A4%E6%96%AD%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B
-    function typeString(object) {
-        return Object.prototype.toString.call(object).slice(8,-1).toLowerCase();
-    }
-
-    function isArray(object) {
-        return typeString(object) === 'array';
-    }
+function isArray(object) {
+    return typeString(object) === 'array';
 }
