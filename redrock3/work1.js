@@ -1,22 +1,19 @@
 function dig(obj, target) {
-    var levelNum = target.replace(/[^0-9]/ig, ""); // 去掉非数字
-    // var levelNum = target.slice(-2, -1); 不能截取大于9的数
-    // var levelNum = target.slice(5); 从第6个数开始截取
-    
-    // 使用 obj[] 来取数组
-    // let 设置块变量
-    for (let index = 1; index <= levelNum; index++) {
-        obj = obj['level'+index];
-    }
-    console.log(obj);
+	target in obj
+	? console.log(obj[target])
+	// values https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/values
+	// reduce https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce
+	: Object.values(obj).forEach(function (val) {
+		if (typeof val === "object") return dig(val, target)
+	})
 }
 
 var data = {
-  level1: {
-    level2: {
-      level3: 'some data'
-    }
-  }
+	level1: {
+		level2: {
+			level3: 'some data'
+		}
+	}
 }
 dig(data, 'level1') // { level2: {level3: 'some data'} }
 dig(data, 'level2') // { level3: 'some data' }
