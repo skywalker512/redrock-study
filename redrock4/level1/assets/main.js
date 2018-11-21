@@ -24,16 +24,16 @@ function changeRedBoxPosition(event) {
         var redBoxElement = document.querySelector("#red-box");
         switch (event.target.getAttribute("id")) {
             case "up":
-                redBoxElement.style.top = parseInt(redBoxElement.style.top) - 100 + "px";
+                if (parseInt(redBoxElement.style.top) > 40) redBoxElement.style.top = parseInt(redBoxElement.style.top) - 100 + "px";
                 break;
             case "down":
-                redBoxElement.style.top = parseInt(redBoxElement.style.top) + 100 + "px";
+                if(window.innerHeight > parseInt(redBoxElement.style.top) + document.querySelector("#red-box").offsetHeight + document.querySelector("#control").offsetHeight + 10) redBoxElement.style.top = parseInt(redBoxElement.style.top) + 100 + "px";
                 break;
             case "left":
-                redBoxElement.style.left = parseInt(redBoxElement.style.left) - 100 + "px";
+                if (parseInt(redBoxElement.style.left) > 8) redBoxElement.style.left = parseInt(redBoxElement.style.left) - 100 + "px";
                 break;
             case "right":
-                redBoxElement.style.left = parseInt(redBoxElement.style.left) + 100 + "px";
+                if(window.innerWidth > parseInt(redBoxElement.style.left) + document.querySelector("#red-box").offsetWidth + 40) redBoxElement.style.left = parseInt(redBoxElement.style.left) + 100 + "px";
                 break;
 
             default:
