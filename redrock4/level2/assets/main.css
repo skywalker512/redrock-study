@@ -1,0 +1,68 @@
+html,body {
+    padding: 0px;
+    margin: 0px;
+}
+
+#push {
+    width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.articles {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 32px;
+}
+.article {
+    width: 910px;
+}
+.articlecontent {
+    width: 910px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    background: #fff;
+    position: absolute;
+    padding: 10px;
+}
+/* 三角内部 */
+.articlecontent:before {
+    content: "";
+    border-top-color: transparent !important;
+    border-bottom-color: transparent !important;
+    border-left-color: transparent !important;
+    border-color: #ddd;
+    border-style: solid;
+    border-width: 8px;
+    height: 0;
+    width: 0;
+    left: -16px;
+    top: 12px;
+    position: absolute;
+}
+/* 填一个白色的来形成三角 */
+.articlecontent:after {
+    content: "";
+    border-top-color: transparent !important;
+    border-bottom-color: transparent !important;
+    border-left-color: transparent !important;
+    border-style: solid;
+    border-width: 8px;
+    height: 0;
+    width: 0;
+    left: -15px;
+    top: 12px;
+    position: absolute;
+    border-color: #fff;
+}
+
+.title {
+    margin-top: 40px;
+    font-size: 40px;
+}
