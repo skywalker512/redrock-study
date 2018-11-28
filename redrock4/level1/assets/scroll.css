@@ -1,0 +1,51 @@
+body,html {
+    margin: 0px;
+    padding: 0px;
+}
+
+#contian {
+    width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.text {
+    width: 100%;
+    height: auto;
+    margin-top: 50px;
+}
+
+.text:last-child {
+    margin-bottom: 50px;
+}
+
+#top {
+    display: none;
+    z-index: 999999;
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    border: 1px solid #dcdcdc;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    background-color: #fff;
+}
+
+#top::after {
+    content: "";
+    position: absolute;
+    left: 16px;
+    top: 20px;
+    height: 16px;
+    width: 16px;
+    border-width: 1px 1px 0 0;
+    border-color: hsla(0, 0%, 0%, 0.5);
+    border-style: solid;
+    transform: rotate(-45deg);
+}
+
+#top:hover {
+    background-color: hsla(0, 0%, 70%, 0.1);
+    transition: .1s ease-in;
+}
