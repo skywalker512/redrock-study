@@ -13,28 +13,36 @@ function initMain() {
     controls.forEach(function(currentValue){
         currentValue.addEventListener("click", upScore)
     })
+
+    var subcommentEle = document.querySelectorAll(".subcomment")
+    subcommentEle.forEach(function(currentValue){
+        currentValue.addEventListener("click", createSubcomment)
+    })
 }
 
 function createCommentElement(currentValue,index){
-    var commentElement = document.querySelector("#comment");
-    commentElement.insertAdjacentHTML("beforeend", '<div class="articles">'
-    +'<div class="avatar"><img src="https://cdn.v2ex.com/gravatar/'+getMd5()+'?d=retro&amp;s=64" alt="" class="avatar"></div>'
-    +'<div class="article">'
-        +'<div class="articlecontent">'
-            +'<div class="info">'
-                +'<div class="name">'+ currentValue.name +'</div>'
-                +'<div class="data">'+ currentValue.dete +'</div>'
-                +'<div class="ua">'+ currentValue.ua +'</div>'
-                +'<div class="controls" data-index="'+index+'">'
-                    +'<i class="fas fa-thumbs-up" data-index="'+index+'"></i>'
-                    +'<span data-index="'+index+'">'+ currentValue.up +'</span>'
+    if (currentValue.sub === -1){
+        var commentElement = document.querySelector("#comment");
+        commentElement.insertAdjacentHTML("beforeend", '<div class="articles" data-index="'+index+'">'
+        +'<div class="avatar"><img src="https://cdn.v2ex.com/gravatar/'+getMd5()+'?d=retro&amp;s=64" alt="" class="avatar"></div>'
+        +'<div class="article">'
+            +'<div class="articlecontent">'
+                +'<div class="info">'
+                    +'<div class="name">'+ currentValue.name +'</div>'
+                    +'<div class="data">'+ currentValue.dete +'</div>'
+                    +'<div class="ua">'+ currentValue.ua +'</div>'
+                    +'<div class="fas fa-quote-right subcomment" data-index="'+index+'"></div>'
+                    +'<div class="controls" data-index="'+index+'">'
+                        +'<i class="fas fa-thumbs-up" data-index="'+index+'"></i>'
+                        +'<span data-index="'+index+'">'+ currentValue.up +'</span>'
+                    +'</div>'
                 +'</div>'
+                +'<div class="content">'+currentValue.content+'</div>'
             +'</div>'
-            +'<div class="content">'+currentValue.content+'</div>'
         +'</div>'
-    +'</div>'
-    +'</div>');
-    commentElement.lastChild.querySelector(".controls").addEventListener("click", upScore);
+        +'</div>');
+        commentElement.lastChild.querySelector(".controls").addEventListener("click", upScore);
+    }
 }
 
 
@@ -47,18 +55,16 @@ function postClickEvent (event) {
     var articleContentElement = document.querySelector(".articles.comment.postcomment .articlecontent")
     articleContentElement.style.cssText = "height: 266px !important;"
     // 输入邮箱，并使用 gravatar 做头像
-    if (userName.length == 0) {
-        userName=prompt("请输入您的邮箱","xxx@xx.com");
-    }
-    var avatarElement = document.querySelector("#postavatar")
-    avatarElement.innerHTML = '<img src="https://cdn.v2ex.com/gravatar/'+getMd5()+'?d=retro&amp;s=64" alt="" class="avatar "></img>'
+    getUserName()
 }
 
 
 // 点击body关闭输入框
 function showTextArae() {
-    var showElement = document.querySelector("#show")
-    showElement.style.cssText = "display: none;"
+    var showElement = document.querySelectorAll("#show")
+    showElement.forEach(function(cur){
+        cur.style.cssText = "display: none;"
+    })
     var articleContentElement = document.querySelector(".articles.comment.postcomment .articlecontent")
     articleContentElement.style.cssText = "height: 44px !important;"
 }
@@ -67,11 +73,10 @@ function showTextArae() {
 function pushText() {
     var msg = document.getElementById('content').value
     if (msg.length>1) {
-        data[data.length] = {name:userName, dete:getTime(), ua:getBrowserInfo(), up:0, content:msg,}
-        var a = createCommentElement(data[data.length-1], data.length-1)
+        data[data.length] = {name:userName, dete:getTime(), ua:getBrowserInfo(), up:0, sub:-1, content:msg,}
+        createCommentElement(data[data.length-1], data.length-1)
         document.getElementById('content').value = ""
-        a.addEventListener("click", upScore)
-    }
+        }
 }
 
 // 获取日期
@@ -152,4 +157,77 @@ function upScore(event) {
     data[indexNum].up += 1
     var upEle = event.target.parentNode.querySelector("span")
     upEle.innerHTML = data[indexNum].up
+}
+
+
+// function createSubcomment(event) {
+//     var subEle = event.target.parentNode.parentNode.parentNode
+//     subEle.insertAdjacentHTML("beforeend", '<div class="smallcomment">'
+//         +'<div class="articles">'
+//             +'<div class="avatar"><img src="https://cdn.v2ex.com/gravatar/972a36b803d3da31e70252ccfe56e9ce?d=retro&amp;s=64" alt="" class="avatar "></div>'
+//             +'<div class="article">'
+//                 +'<div class="articlecontent">'
+//                     +'<div class="info">'
+//                         +'<div class="name">houzhenhong</div>'
+//                         +'<div class="data">2018-11-29</div>'
+//                         +'<div class="ua">Chrome</div>'
+//                     +'</div>'
+//                     +'<div class="content">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsum quaerat voluptates quod expedita quis perspiciatis dolore fuga dolorem quasi, voluptate optio hic laudantium distinctio architecto accusantium officiis nostrum blanditiis suscipit.</div>'
+//                 +'</div>'
+//             +'</div>'
+//         +'</div>'
+//         +'</div>')
+// }
+
+function createSubcomment(event) {
+    getUserName()
+    var subEle = event.target.parentNode.parentNode.parentNode
+    if (!subEle.innerHTML.includes("smallcomment")){
+        subEle.insertAdjacentHTML("beforeend", '<div class="smallcomment">'
+        +'<div class="articles">'
+            +'<div class="avatar"><img src="https://cdn.v2ex.com/gravatar/'+getMd5()+'?d=retro&amp;s=64" alt="" class="avatar "></div>'
+            +'<div class="article">'
+                +'<div class="articlecontent">'
+                +'<div class="postbody">'
+                    +'<textarea name="content" id="content" cols="30" rows="10" autocomplete="off"></textarea>'
+                +'</div>'
+                +'<div class="postfoot">'
+                    +'<input type="submit" name="postreply" value="发表回复" class="submit button" id="subsubmit">'
+                +'</div>'
+                +'</div>'
+            +'</div>'
+        +'</div>'
+        +'</div>')
+    var subSubmitElment = document.querySelector("#subsubmit")
+    subSubmitElment.addEventListener("click", subPushText)
+    }
+}
+
+function getUserName() {
+    if (userName.length == 0) {
+        userName=prompt("请输入您的邮箱","xxx@xx.com");
+        var avatarElement = document.querySelector("#postavatar")
+        avatarElement.innerHTML = '<img src="https://cdn.v2ex.com/gravatar/'+getMd5()+'?d=retro&amp;s=64" alt="" class="avatar "></img>'
+    }
+}
+
+function subPushText(event) {
+    var subEle = event.target.parentNode.parentNode.parentNode.parentNode
+    var msg = subEle.querySelector('#content').value
+    subEle.insertAdjacentHTML("beforebegin", '<div class="smallcomment">'
+        +'<div class="articles">'
+            +'<div class="avatar"><img src="https://cdn.v2ex.com/gravatar/'+getMd5()+'?d=retro&amp;s=64" alt="" class="avatar "></div>'
+            +'<div class="article">'
+                +'<div class="articlecontent">'
+                    +'<div class="info">'
+                        +'<div class="name">'+userName+'</div>'
+                        +'<div class="data">'+getTime()+'</div>'
+                        +'<div class="ua">'+getBrowserInfo()+'</div>'
+                    +'</div>'
+                    +'<div class="content">'+msg+'</div>'
+                +'</div>'
+            +'</div>'
+        +'</div>'
+        +'</div>')
+    subEle.querySelector('#content').value = ""
 }
