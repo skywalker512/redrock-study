@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="assets/main.css" />
     <script src="assets/main.js"></script>
+    <script src="assets/data.js"></script>
 </head>
 
 <body>
@@ -27,7 +28,7 @@
             </div>
         </div>
         <hr>
-        <div class="comment">
+        <div class="comment" id="comment">
             <div class="articles">
                 <div class="avatar"><a href="/member/1"><img src="https://cdn.v2ex.com/gravatar/972a36b803d3da31e70252ccfe56e9ce?d=retro&amp;s=64" alt="" class="avatar "></a></div>
                 <div class="article">
@@ -67,7 +68,7 @@
                             </div>
                         </div>
                         <div class="articles">
-                            <div class="avatar"><a href="/member/1"><img src="https://cdn.v2ex.com/gravatar/972a36b803d3da31e70252ccfe56e9ce?d=retro&amp;s=64" alt="" class="avatar "></a></div>
+                            <div class="avatar"><a href="/member/1"><img src="" alt="" class="avatar "></a></div>
                             <div class="article">
                                 <div class="articlecontent">
                                     <div class="info">
@@ -83,7 +84,27 @@
                 </div>
             </div>
         </div>
+        <div class="articles comment postcomment" id="post">
+            <div class="avatar"></div>
+            <div class="article">
+                <div class="articlecontent">
+                    <div class="content">回复点什么...</div>
+                    <div id="show" style="display: none">
+                        <div class="postbody">
+                            <textarea name="content" id="content" cols="30" rows="10" autocomplete="off"></textarea>
+                        </div>
+                        <div class="postfoot">
+                            <input type="submit" name="postreply" value="发表回复" class="submit button" id="submit">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="none"></div>
     </div>
+    <script>
+        initMain();
+    </script>
 </body>
 
 </html>

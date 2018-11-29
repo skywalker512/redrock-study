@@ -19,6 +19,7 @@ html,body {
     width: 64px;
     height: 64px;
     border-radius: 32px;
+    background-color: #e0e0e0;
 }
 
 .articlecontent {
@@ -91,4 +92,55 @@ hr {
 
 .smallcomment .articlecontent {
     width: 823px;
+}
+
+
+#post .articlecontent {
+    height: 44px;
+    color: #888;
+    font-style: italic;
+    font-weight: 400;
+}
+
+.postbody {
+    height: 200px;
+}
+
+#content {
+    height: 200px;
+    width: 100%;
+}
+
+.articles.comment.postcomment .articlecontent{ 
+    height: 44px !important;
+    transition-duration: .2s;
+}
+
+.none {
+    height: 100px;
+}
+
+textarea {
+    border-style: dashed;
+    border-width: 1px 0;
+    border-radius: 0;
+    resize: none;
+    padding: 12px;
+    outline: 0;
+    box-sizing: border-box;
+}
+
+.submit.button {
+    background-color: #354059;
+    height: 34px;
+    border: 1px solid transparent;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.postfoot {
+    margin-top: 10px;
+    display: flex;
+    justify-content: flex-end;
 }
