@@ -128,6 +128,10 @@ textarea {
     padding: 12px;
     outline: 0;
     box-sizing: border-box;
+    /* 解决字体小 */
+    font-size: 16px;
+    /* https://zh.wikipedia.org/wiki/%E6%97%A0%E8%A1%AC%E7%BA%BF%E4%BD%93 */
+    font-family: sans-serif;
 }
 
 .submit.button {

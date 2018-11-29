@@ -34,7 +34,10 @@ function postClickEvent (event) {
     var showElement = document.querySelector("#show")
     showElement.style.cssText = "display: block"
     var articleContentElement = document.querySelector(".articles.comment.postcomment .articlecontent")
-    articleContentElement.style.cssText = "height: 260px !important;"
+    articleContentElement.style.cssText = "height: 266px !important;"
+    if (userName.length == 0) {
+        userName=prompt("请输入您的邮箱","xxx@xx.com");
+    }
 }
 
 function showTextArae() {
@@ -47,7 +50,7 @@ function showTextArae() {
 function pushText() {
     var msg = document.getElementById('content').value
     if (msg.length>1) {
-        data[data.length] = {name:"houzhen", dete:getTime(), ua:"chrome", content:msg,}
+        data[data.length] = {name:userName, dete:getTime(), ua:getBrowserInfo(), content:msg,}
         createCommentElement(data[data.length-1])
         document.getElementById('content').value = ""
     }
@@ -69,7 +72,7 @@ function getTime() {
        nowMonth = "0" + nowMonth;
     }
     
-    // 对月份进行处理，1-9号在前面添加一个“0”
+    // 日期进行处理，1-9号在前面添加一个“0”
     if (strDate >= 0 && strDate <= 9) {
        strDate = "0" + strDate;
     }
@@ -85,12 +88,20 @@ function getTime() {
     // 简书著作权归作者所有，任何形式的转载都请联系作者获得授权并注明出处。
 }
 
-// function getBrowserInfo(){
-//     var Sys = {};
-//     var ua = navigator.appVersion
-//     var re =/(msie|firefox|chrome|opera|version).*?([\d.]+)/;
-//     var m = ua.match(re);
-//     Sys.browser = m[1].replace(/version/, "'safari");
-//     Sys.ver = m[2];
-//     return Sys;
-// }
+function getBrowserInfo(){
+    var ua = navigator.appVersion
+    if (ua.includes('MSIE')){
+        var re ="Internet Explorer";
+    }
+    if (ua.includes('Safari')){
+        var re ="Safari";
+        // https://stackoverflow.com/questions/4024230/strange-user-agent-with-google-chrome
+        if (ua.includes('Chrome')){
+            var re ="Chrome";
+        }
+    }
+    if (ua.includes('Firefox')){
+        var re ="Firefox";
+    }
+    return re
+}
