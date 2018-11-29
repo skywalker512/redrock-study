@@ -1,6 +1,5 @@
 function initMain() {
     data.map(createCommentElement)
-    
     var postElement = document.querySelector("#post");
     postElement.addEventListener("click", postClickEvent);
 
@@ -14,7 +13,7 @@ function initMain() {
 function createCommentElement(currentValue){
     var commentElement = document.querySelector("#comment");
     commentElement.insertAdjacentHTML("beforeend", '<div class="articles">'
-    +'<div class="avatar"><img src="https://cdn.v2ex.com/gravatar/972a36b803d3da31e70252ccfe56e9ce?d=retro&amp;s=64" alt="" class="avatar"></div>'
+    +'<div class="avatar"><img src="https://cdn.v2ex.com/gravatar/'+getMd5()+'?d=retro&amp;s=64" alt="" class="avatar"></div>'
     +'<div class="article">'
         +'<div class="articlecontent">'
             +'<div class="info">'
@@ -30,16 +29,23 @@ function createCommentElement(currentValue){
 
 
 function postClickEvent (event) {
+    // 阻止body的点击监听
     event.stopPropagation()
+    // 显示输入框
     var showElement = document.querySelector("#show")
     showElement.style.cssText = "display: block"
     var articleContentElement = document.querySelector(".articles.comment.postcomment .articlecontent")
     articleContentElement.style.cssText = "height: 266px !important;"
+    // 输入邮箱，并使用 gravatar 做头像
     if (userName.length == 0) {
         userName=prompt("请输入您的邮箱","xxx@xx.com");
     }
+    var avatarElement = document.querySelector("#postavatar")
+    avatarElement.innerHTML = '<img src="https://cdn.v2ex.com/gravatar/'+getMd5()+'?d=retro&amp;s=64" alt="" class="avatar "></img>'
 }
 
+
+// 点击body关闭输入框
 function showTextArae() {
     var showElement = document.querySelector("#show")
     showElement.style.cssText = "display: none;"
@@ -47,6 +53,7 @@ function showTextArae() {
     articleContentElement.style.cssText = "height: 44px !important;"
 }
 
+// 提交按钮
 function pushText() {
     var msg = document.getElementById('content').value
     if (msg.length>1) {
@@ -55,6 +62,8 @@ function pushText() {
         document.getElementById('content').value = ""
     }
 }
+
+// 获取日期
 function getTime() {
     var date = new Date();
 
@@ -88,6 +97,7 @@ function getTime() {
     // 简书著作权归作者所有，任何形式的转载都请联系作者获得授权并注明出处。
 }
 
+// 获取浏览器
 function getBrowserInfo(){
     var ua = navigator.appVersion
     if (ua.includes('MSIE')){
@@ -104,4 +114,24 @@ function getBrowserInfo(){
         var re ="Firefox";
     }
     return re
+}
+
+// 防止在用户在输入过程中离开网页
+window.onbeforeunload = function(e) {
+    if(document.getElementById('content').value.length !== 0){
+        var dialogText = '请不要关闭网页';
+        e.returnValue = dialogText;
+        return dialogText;
+    }
+}
+
+// 使用 gravatar 需要邮箱MD5
+function getMd5() {
+    var mdStr=''
+    if (userName === ""){
+        mdStr = "972a36b803d3da31e70252ccfe56e9ce"
+    }else{
+        mdStr = md5(userName)
+    }
+    return mdStr
 }
