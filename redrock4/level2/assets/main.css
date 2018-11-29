@@ -20,15 +20,14 @@ html,body {
     height: 64px;
     border-radius: 32px;
 }
-.article {
-    width: 910px;
-}
+
 .articlecontent {
-    width: 910px;
+    width: 900px;
     border: 1px solid #ddd;
     border-radius: 3px;
     background: #fff;
-    position: absolute;
+    /* 使用relative将父节点撑起来 */
+    position: relative;
     padding: 10px;
 }
 /* 三角内部 */
@@ -65,4 +64,31 @@ html,body {
 .title {
     margin-top: 40px;
     font-size: 40px;
+}
+
+.info {
+    font-size: 10px;
+    display: flex;
+    margin-bottom: 5px;
+}
+
+.name {
+    font-weight: 600;
+    margin-right: 10px;
+}
+
+.data, .ua {
+    margin-right: 10px;
+    color: #999999;
+}
+
+hr {
+    margin-top: 20px;
+    margin-bottom: 30px;
+    border-color: #cccccc;
+    opacity: .5;
+}
+
+.smallcomment .articlecontent {
+    width: 823px;
 }
