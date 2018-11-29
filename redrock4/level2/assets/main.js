@@ -1,16 +1,21 @@
 function initMain() {
     data.map(createCommentElement)
     var postElement = document.querySelector("#post");
-    postElement.addEventListener("click", postClickEvent);
+    postElement.addEventListener("click", postClickEvent)
 
     var bodyElmemet = document.querySelector("body")
     bodyElmemet.addEventListener("click", showTextArae)
 
     var submitElment = document.querySelector("#submit")
     submitElment.addEventListener("click", pushText)
+
+    var controls = document.querySelectorAll(".controls")
+    controls.forEach(function(currentValue){
+        currentValue.addEventListener("click", upScore)
+    })
 }
 
-function createCommentElement(currentValue){
+function createCommentElement(currentValue,index){
     var commentElement = document.querySelector("#comment");
     commentElement.insertAdjacentHTML("beforeend", '<div class="articles">'
     +'<div class="avatar"><img src="https://cdn.v2ex.com/gravatar/'+getMd5()+'?d=retro&amp;s=64" alt="" class="avatar"></div>'
@@ -20,11 +25,16 @@ function createCommentElement(currentValue){
                 +'<div class="name">'+ currentValue.name +'</div>'
                 +'<div class="data">'+ currentValue.dete +'</div>'
                 +'<div class="ua">'+ currentValue.ua +'</div>'
+                +'<div class="controls" data-index="'+index+'">'
+                    +'<i class="fas fa-thumbs-up" data-index="'+index+'"></i>'
+                    +'<span data-index="'+index+'">'+ currentValue.up +'</span>'
+                +'</div>'
             +'</div>'
-            +'<div class="content">'+ currentValue.content +'</div>'
+            +'<div class="content">'+currentValue.content+'</div>'
         +'</div>'
     +'</div>'
-    +'</div>');        
+    +'</div>');
+    commentElement.lastChild.querySelector(".controls").addEventListener("click", upScore);
 }
 
 
@@ -57,9 +67,10 @@ function showTextArae() {
 function pushText() {
     var msg = document.getElementById('content').value
     if (msg.length>1) {
-        data[data.length] = {name:userName, dete:getTime(), ua:getBrowserInfo(), content:msg,}
-        createCommentElement(data[data.length-1])
+        data[data.length] = {name:userName, dete:getTime(), ua:getBrowserInfo(), up:0, content:msg,}
+        var a = createCommentElement(data[data.length-1], data.length-1)
         document.getElementById('content').value = ""
+        a.addEventListener("click", upScore)
     }
 }
 
@@ -134,4 +145,11 @@ function getMd5() {
         mdStr = md5(userName)
     }
     return mdStr
+}
+
+function upScore(event) {
+    var indexNum = event.target.getAttribute("data-index");
+    data[indexNum].up += 1
+    var upEle = event.target.parentNode.querySelector("span")
+    upEle.innerHTML = data[indexNum].up
 }

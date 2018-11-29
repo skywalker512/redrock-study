@@ -71,6 +71,7 @@ html,body {
     font-size: 10px;
     display: flex;
     margin-bottom: 5px;
+    justify-content: flex-start;
 }
 
 .name {
@@ -147,4 +148,15 @@ textarea {
     margin-top: 10px;
     display: flex;
     justify-content: flex-end;
+}
+
+.controls {
+    /* https://codeday.me/bug/20170409/9648.html */
+    margin-left: auto;
+    margin-right: 4px;
+    color: #999999;
+}
+
+.controls i {
+    margin-right: 4px;
 }
