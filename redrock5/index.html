@@ -6,9 +6,37 @@
     <title>信息页</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="assets/css/main.css" />
-    <script src="assets/js/main.js"></script>
+    <script src="./assets/js/vue.js"></script>
 </head>
 <body>
-    
+    <div id="name">
+        <div v-for="name in names" class="namebox">
+            <div class="avatar"></div>
+            <div class="content">
+                <div class="namewords">{{ name.name }}</div>
+                <div class="studentnum">{{ name.student_num }}</div>
+                <div class="classnum">{{ name.class_num }}</div>
+                <div class="gender">{{ name.gender }}</div>
+                <div class="major">{{ name.major }}</div>
+            </div>
+        </div>
+    </div>
 </body>
+<script src="assets/js/main.js"></script>
+<script>
+    var vm = new Vue({
+        el:"#name",
+        data:{
+            names:[
+                {class_num: "01011505",gender: "男",major: "通信工程",name: "宋浩南",student_num: "2015210067"},
+                {class_num: "01011505",gender: "男",major: "通信工程",name: "宋浩南",student_num: "2015210067"},
+            ],
+        },
+        methods:{
+            getData:function (){
+                
+            }
+        }
+})
+</script>
 </html>
