@@ -1,42 +1,102 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>信息页</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="assets/css/main.css" />
+    <!-- <link rel="stylesheet" type="text/css" media="screen" href="assets/css/semantic.css" /> -->
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css" integrity="sha256-4/hT2GDA5MgOfJkKIAZFY2WBPmgRm2OOSd0Q483ObU0=" crossorigin="anonymous"> -->
     <script src="./assets/js/vue.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.min.js" integrity="sha256-FtWfRI+thWlNz2sB3SJbwKx5PgMyKIVgwHCTwa3biXc=" crossorigin="anonymous"></script> -->
 </head>
+
 <body>
     <div id="name">
-        <div v-for="name in names" class="namebox">
-            <div class="avatar"></div>
-            <div class="content">
-                <div class="namewords">{{ name.name }}</div>
-                <div class="studentnum">{{ name.student_num }}</div>
-                <div class="classnum">{{ name.class_num }}</div>
-                <div class="gender">{{ name.gender }}</div>
-                <div class="major">{{ name.major }}</div>
+        <div class="none"></div>
+        <div class="namesbox">
+            <div v-for="name in names" class="namebox">
+                <div class="avatar"></div>
+                <div class="content">
+                    <div class="namewords">{{ name.name }}</div>
+                    <div class="studentnum">学号：{{ name.student_num }}</div>
+                    <div class="classnum">班级：{{ name.class_num }}</div>
+                    <div class="gender">性别：{{ name.gender }}</div>
+                    <div class="major">专业：{{ name.major }}</div>
+                </div>
             </div>
         </div>
+        <div class="control">
+            <div class="btn" :class="{active: 1 != pages}" @click="changePageUp()">向上</div>
+            <div v-if="!isPhone()">
+                <div v-for="n in 10">
+                    <div class="btn" :class="{active: n === pages}" @click="getData(pages=n)">{{ n }}</div>
+                </div>
+            </div>
+            <div v-else>
+                <div class="btn">{{ pages }}/10</div>
+            </div>
+            <div class="btn" :class="{active: 10 != pages}" @click="changePageDown()">向下</div>
+        </div>
+        <div class="none"></div>
     </div>
 </body>
 <script src="assets/js/main.js"></script>
 <script>
     var vm = new Vue({
-        el:"#name",
-        data:{
-            names:[
-                {class_num: "01011505",gender: "男",major: "通信工程",name: "宋浩南",student_num: "2015210067"},
-                {class_num: "01011505",gender: "男",major: "通信工程",name: "宋浩南",student_num: "2015210067"},
+        el: "#name",
+        data: {
+            names: [
+                // {class_num: "01011505",gender: "男",major: "通信工程",name: "宋浩南",student_num: "2015210067"},
+                // {class_num: "01011505",gender: "男",major: "通信工程",name: "宋浩南",student_num: "2015210067"},
             ],
+            pages: 1,
         },
-        methods:{
-            getData:function (){
-                
+        methods: {
+            getData: function (inputPage) {
+                var self = this;
+                Ajax({
+                    type: 'get',
+                    url: 'https://api.tumiv.com/v2/cqupt/student',
+                    data: {
+                        page: inputPage,
+                        year: '2015',
+                    },
+                    success: function (res) {
+                        self.names = res.result;
+                        // 这里的this变成了 window
+                        // console.log(this)
+                    },
+                    error: function (res) {
+                        console.log(res);
+                    },
+                });
+            },
+            changePageUp: function () {
+                if (this.pages > 1) {
+                    this.pages -= 1;
+                    this.getData(this.pages);
+                }
+            },
+            changePageDown: function () {
+                if (this.pages < 10) {
+                    this.pages += 1;
+                    this.getData(this.pages);
+                }
+            },
+            isPhone() {
+                if (/(iPhone|iPad|iPod|iOS|Android)/i.test(navigator.userAgent)) {
+                    return true;
+                };
             }
+        },
+        // ready 变成了 mounted
+        mounted: function () {
+            this.getData(this.pages);
         }
-})
+    })
 </script>
+
 </html>

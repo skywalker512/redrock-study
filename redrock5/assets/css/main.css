@@ -1,0 +1,63 @@
+body,html,button {
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+    width: 100%;
+}
+
+#name {
+    width: 900px;
+    margin: auto auto;
+}
+
+.namesbox {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.namebox {
+    width: 240px;
+    height: 200px;
+    padding: 30px;
+    border:5px solid black;
+    margin: 30px;
+    box-sizing: border-box; /* 修改计算方式 */
+}
+
+.btn {
+    height: 34px;
+    width: 45px;
+    cursor: pointer;
+    background-color: white;
+    border:3px solid black;
+    margin-left: 2px;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.control{
+    display: flex;
+    justify-content: center;
+}
+.active {
+    background-color:  black;
+    color: white;
+}
+
+.none {
+    height: 30px;
+}
+
+.namewords {
+    font-size: 30px;
+}
+
+
+@media (max-width: 900px){
+    #name {
+        width: 100%;
+        margin: auto auto;
+    }
+    
+}

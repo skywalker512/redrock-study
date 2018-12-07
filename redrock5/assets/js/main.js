@@ -6,9 +6,6 @@ function Ajax(obj) {
     this.data = obj.data || '';
     this.success = obj.success || '';
     this.error = obj.error || '';
-}
-
-Ajax.prototype.send = function (type, url, data, success, error) {
     var type = type || this.type;
     var url = url || this.url;
     var data = data || this.data;
@@ -33,21 +30,3 @@ Ajax.prototype.send = function (type, url, data, success, error) {
         error(e);
     });
 }
-
-var resl;
-
-var ajax = new Ajax({
-    type: 'get',
-    url: 'https://api.tumiv.com/v2/cqupt/student',
-    data: {
-        page: '2',
-        year: '2015',
-    },
-    success: function (res) {
-        console.log(res);
-    },
-    error: function (res) {
-        console.log(res);
-    },
-});
-ajax.send();
