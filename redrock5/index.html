@@ -30,7 +30,7 @@
         </div>
         <div class="control">
             <div class="btn" :class="{active: 1 != pages}" @click="changePageUp()">向上</div>
-            <div v-if="!isPhone()">
+            <div class="control" v-if="!isPhone()">
                 <div v-for="n in 10">
                     <div class="btn" :class="{active: n === pages}" @click="getData(pages=n)">{{ n }}</div>
                 </div>
