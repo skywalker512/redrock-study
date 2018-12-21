@@ -24,13 +24,14 @@ function addSum() {
     }
     _addSum.toString = function () {
         // https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Functions/Arrow_functions
-        return argsArr.reduce((a, b) => a + b);
+        // return argsArr.reduce((a, b) => a + b);
         // https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce
 
-        // argsArr.reduce(function(a, b){
-        //     return a + b;
-        // });
-        // 为什么只能使用箭头函数
+        return argsArr.reduce(function(a, b){
+            return a + b;
+        });
+        // 并不是函数的问题，toString 需要 return
+
     }
     return _addSum // 实例化了以后再返回一个函数，柯西化？
 }
