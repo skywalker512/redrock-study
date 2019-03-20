@@ -25,6 +25,7 @@ function Ajax(obj) {
         // Promise的设计文档中说了，[[PromiseValue]]是个内部变量，外部无法得到，只能在then中获取
         response.json().then(function (result) {
             success(result);
+            console.log(this);
         });
     }).catch(function (e) {
         error(e);
