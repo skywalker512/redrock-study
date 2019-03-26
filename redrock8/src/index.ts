@@ -10,4 +10,10 @@ export class CounterElement extends HTMLElement {
   constructor() {
     super();
   }
+  connectedCallback() {
+    console.log(3)
+  }
+  __render() {
+    console.log(4)
+  }
 }
