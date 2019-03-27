@@ -17,6 +17,10 @@
     "sourceMap": true,
     "target": "es6"
   },
+  "include": [
+    "typings/index.d.ts",
+    "src/**/*"
+  ],
   "exclude": [
     "node_modules",
     "**/*.spec.ts"

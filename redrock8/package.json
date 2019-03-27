@@ -21,6 +21,10 @@
         "webpack-cli": "^3.2.1"
     },
     "dependencies": {
+        "css-loader": "^2.1.1",
+        "less": "^3.9.0",
+        "less-loader": "^4.1.0",
+        "raw-loader": "^2.0.0",
         "ts-loader": "^5.3.3",
         "typescript": "^3.3.4000"
     }

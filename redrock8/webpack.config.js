@@ -9,17 +9,29 @@ module.exports = {
     entry: {
         index: './src/index.ts',
     },
+    resolve: {
+        extensions: ['.ts', '.html', '.less']
+    },
     module: {
         rules: [
             {
                 test: /\.ts?$/,
                 use: 'ts-loader',
                 exclude: /node_modules/
-            }
+            },
+            {
+                test: /\.html$/,
+                loader: 'raw-loader',
+            },
+            {
+                test: /\.less$/,
+                use: [{
+                    loader: "css-loader" // translates CSS into CommonJS
+                }, {
+                    loader: "less-loader" // compiles Less to CSS
+                }]
+            },
         ]
-    },
-    resolve: {
-        extensions: ['.tsx', '.ts', '.js']
     },
     output: {
         filename: '[name].[chunkhash].bundle.js',
