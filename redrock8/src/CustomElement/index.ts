@@ -38,14 +38,4 @@ export const CustomElement = (args: CustomElementMetadata) => (target: any) => {
   customElements.define(tag, CustomElement)
 }
 
-const connectSuper = (_target: any, property: any, descriptor: any): object => {
-  const oldValue = descriptor.value;
-
-  descriptor.value = function() {
-    this.__proto__.__proto__[property] && this.__proto__.__proto__[property]()
-    return oldValue.apply(this, arguments)
-  }
-
-  return descriptor
-
-}
+const connectSuper = (target: any, property: any): void => target.__proto__[property] && target.__proto__[property]()
