@@ -38,4 +38,4 @@ export const CustomElement = (args: CustomElementMetadata) => (target: any) => {
   customElements.define(tag, CustomElement)
 }
 
-const connectSuper = (target: any, property: any): void => target.__proto__[property] && target.__proto__[property]()
+const connectSuper = (target: object, property: string): void => Object.getPrototypeOf(target)[property] && Object.getPrototypeOf(target)[property]()

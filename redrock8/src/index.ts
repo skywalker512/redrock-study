@@ -2,6 +2,8 @@ import { CustomElement } from './CustomElement'
 // 这里必须写相对路径
 import temp from './counter-element.html'
 import css from './ccs.less'
+
+import apiData from './json/index.json'
 @CustomElement({
   tag: 'counter-element',
   template: temp,
@@ -14,6 +16,7 @@ export class CounterElement extends HTMLElement {
   }
   connectedCallback() {
     console.log(3)
+    console.log(apiData)
   }
   __render() {
     console.log(4)

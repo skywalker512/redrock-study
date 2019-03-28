@@ -10,7 +10,7 @@ module.exports = {
         index: './src/index.ts',
     },
     resolve: {
-        extensions: ['.ts', '.html', '.less']
+        extensions: ['.ts', '.html', '.less', '.json']
     },
     module: {
         rules: [
@@ -30,6 +30,10 @@ module.exports = {
                 }, {
                     loader: "less-loader" // compiles Less to CSS
                 }]
+            },
+            {
+                test: /\.json$/,
+                loader: 'raw-loader',
             },
         ]
     },
