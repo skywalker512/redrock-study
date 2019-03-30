@@ -24,17 +24,19 @@ export class CarouselIndex extends HTMLElement {
     activeNum: number,
     time: number,
     autoChangeNum: number,
+    transitionMode: string,
   }
 
   constructor() {
     super()
-    this.state = { list: [], activeNum: null, time: null, autoChangeNum: null }
+    this.state = { list: [], activeNum: null, time: null, autoChangeNum: null, transitionMode: null }
   }
   connectedCallback() {
     // 注入 state
     this.state.list = apiData
     this.state.activeNum = 0
     this.state.time = parseInt(this.getAttribute('time'))
+    this.state.transitionMode = this.getAttribute('transition-mode')
 
     // 模版 html 中有的
     this.$slides = this.shadowRoot.querySelector('ul.slides')
@@ -61,7 +63,7 @@ export class CarouselIndex extends HTMLElement {
       this.$slidesNavigation.appendChild($radio)
     })
     // 将div撑开
-    this.$slides.style.width = `${this.state.list.length * 100}%`
+    if(this.state.transitionMode==='slide') this.$slides.style.width = `${this.state.list.length * 100}%`
   }
 
   // 通过装饰器后 使用 call 绑定了 this, 不再需要使用 箭头方法了
@@ -89,7 +91,7 @@ export class CarouselIndex extends HTMLElement {
       if (num === index) item.classList.add('checked')
     })
     this.state.activeNum = index
-    this.$slides.style.transform = `translateX(-${(this.state.activeNum / this.state.list.length) * 100}%)`
+    if(this.state.transitionMode==='slide') this.$slides.style.transform = `translateX(-${(this.state.activeNum / this.state.list.length) * 100}%)`
   }
   handelAutoChange = () => {
     if (this.state.time !== NaN) {
