@@ -38,4 +38,12 @@ export const CustomElement = (args: CustomElementMetadata) => (target: any) => {
   customElements.define(tag, CustomElement)
 }
 
-const connectSuper = (target: object, property: string): void => Object.getPrototypeOf(target)[property] && Object.getPrototypeOf(target)[property]()
+function connectSuper (target: object, property: string, descriptor: any): void {
+  const oldValue = descriptor.value
+  descriptor.value = function() {
+    Object.getPrototypeOf(target)[property] && Object.getPrototypeOf(target)[property].apply(this)
+    return oldValue.apply(this, arguments)
+  }
+  // 传回去的 descriptor 会在 类中执行，即会绑定相应的 this
+  return descriptor
+}

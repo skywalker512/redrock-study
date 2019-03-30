@@ -12,11 +12,10 @@ import apiData from './json/index.json'
 })
 export class CounterElement extends HTMLElement {
   constructor() {
-    super();
+    super()
   }
   connectedCallback() {
-    console.log(3)
-    console.log(apiData)
+    console.log(this.getAttribute('time'))
   }
   __render() {
     console.log(4)
