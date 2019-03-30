@@ -14,31 +14,44 @@ import { CarouselItem } from '../Item/item'
   shadow: true,
 })
 export class CarouselIndex extends HTMLElement {
-  _list: { "content": string; "img": string; "name": string; }[]
   $slides: HTMLUListElement;
   $inputs: HTMLDivElement;
-  _activeNum: number;
   $slidesNavigation: HTMLDivElement;
+  $carrousel: HTMLDivElement;
+  state: {
+    list: { content: string; img: string; name: string; }[],
+    activeNum: number,
+    time: number,
+    autoChangeNum: number,
+  }
 
   constructor() {
     super()
-    this._list = apiData
-    this._activeNum
+    this.state = { list: [], activeNum: null, time: null, autoChangeNum: null }
   }
   connectedCallback() {
+    // 注入 state
+    this.state.list = apiData
+    this.state.activeNum = 0
+    this.state.time = parseInt(this.getAttribute('time'))
+
     // 模版 html 中有的
     this.$slides = this.shadowRoot.querySelector('ul.slides')
     this.$slidesNavigation = this.shadowRoot.querySelector('div#slidesNavigation')
+    this.$carrousel = this.shadowRoot.querySelector('div.carrousel')
 
     this.__render()
 
     // 动态生成的
     this.$slidesNavigation.addEventListener('click', this.handelRadioClick)
+    this.$carrousel.addEventListener('mouseenter', this.handelMouseenter)
+    this.$carrousel.addEventListener('mouseleave', this.handelMouseleave)
     this.$slidesNavigation.firstElementChild.classList.add('checked')
-    this._activeNum = 0
+
+    this.handelAutoChange()
   }
   __render() {
-    this._list.forEach((item) => {
+    this.state.list.forEach((item) => {
       // 填入信息
       const $item = <CarouselItem>document.createElement('carouse-item')
       $item._item = item
@@ -50,18 +63,40 @@ export class CarouselIndex extends HTMLElement {
       this.$slidesNavigation.appendChild($radio)
     })
     // 将div撑开
-    this.$slides.style.width = `${this._list.length * 100}%`
+    this.$slides.style.width = `${this.state.list.length * 100}%`
   }
 
   handelRadioClick: EventListener = e => {
     if (e.srcElement.matches('.radio')) {
-      e.srcElement.parentElement.childNodes.forEach((item: HTMLElement, index) => {
-        if (item.classList.contains('checked')) item.classList.remove('checked')
-        // 移动
-        if (item === e.srcElement) this._activeNum = index
+      e.srcElement.parentNode.childNodes.forEach((item: HTMLElement, index: number)=>{
+        if (item === e.srcElement) this.handelChangeRadio(index)
       })
-      e.srcElement.classList.add('checked')
-      this.$slides.style.transform = `translateX(-${(this._activeNum / this._list.length) * 100}%)`
     }
+  }
+  // mouseenter 不会冒泡，到了才触发
+  handelMouseenter: EventListener = () => {
+    clearInterval(this.state.autoChangeNum)
+  }
+
+  handelMouseleave: EventListener = () => {
+    this.handelAutoChange()
+  }
+
+  handelChangeRadio = (index:number) => {
+    this.$slidesNavigation.childNodes.forEach((item: HTMLElement, num) => {
+      if (num === this.state.activeNum) item.classList.remove('checked')
+      if (num === index) item.classList.add('checked')
+    })
+    this.state.activeNum = index
+    this.$slides.style.transform = `translateX(-${(this.state.activeNum / this.state.list.length) * 100}%)`
+  }
+  handelAutoChange = () => {
+    if (this.state.time !== NaN) {
+      this.state.autoChangeNum = setInterval(this.handelAutoChangeRadio, this.state.time)
+    }
+  }
+
+  handelAutoChangeRadio = () => {
+    this.handelChangeRadio((this.state.activeNum+1)%this.state.list.length)
   }
 }
