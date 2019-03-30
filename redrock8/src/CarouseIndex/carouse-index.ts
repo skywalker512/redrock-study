@@ -63,8 +63,10 @@ export class CarouselIndex extends HTMLElement {
     // 将div撑开
     this.$slides.style.width = `${this.state.list.length * 100}%`
   }
+
+  // 通过装饰器后 使用 call 绑定了 this, 不再需要使用 箭头方法了
   @Listen('click', '$slidesNavigation')
-  handelRadioClick: EventListener = e => {
+  handelRadioClick (e:Event) {
     if (e.srcElement.matches('.radio')) {
       e.srcElement.parentNode.childNodes.forEach((item: HTMLElement, index: number)=>{
         if (item === e.srcElement) this.handelChangeRadio(index)
@@ -73,11 +75,11 @@ export class CarouselIndex extends HTMLElement {
   }
   // mouseenter 不会冒泡，到了才触发
   @Listen('mouseenter', '$carrousel')
-  handelMouseenter: EventListener = () => {
+  handelMouseenter () {
     clearInterval(this.state.autoChangeNum)
   }
   @Listen('mouseleave', '$carrousel')
-  handelMouseleave: EventListener = () => {
+  handelMouseleave () {
     this.handelAutoChange()
   }
 
