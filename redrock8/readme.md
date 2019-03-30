@@ -11,3 +11,6 @@
   - [ ] 切换时的渐变效果（左右渐变和透明度渐变）
   - [x] 可设置切换时间
 
+#### 打包
+
+https://github.com/skywalker512/redrock-study/releases/download/work8/dist.zip
