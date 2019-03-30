@@ -1,6 +1,6 @@
 // export 出去后有代码提示
 export interface CustomElementMetadata {
-  tag: string
+  tag?: string
   template?: string
   style?: string
   shadow: boolean
@@ -41,8 +41,8 @@ export const CustomElement = (args: CustomElementMetadata) => (target: any) => {
 function connectSuper (target: object, property: string, descriptor: any): void {
   const oldValue = descriptor.value
   descriptor.value = function() {
+    oldValue.apply(this, arguments)
     Object.getPrototypeOf(target)[property] && Object.getPrototypeOf(target)[property].apply(this)
-    return oldValue.apply(this, arguments)
   }
   // 传回去的 descriptor 会在 类中执行，即会绑定相应的 this
   return descriptor
