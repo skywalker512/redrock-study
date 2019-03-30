@@ -31,10 +31,6 @@ module.exports = {
                     loader: "less-loader" // compiles Less to CSS
                 }]
             },
-            {
-                test: /\.json$/,
-                loader: 'raw-loader',
-            },
         ]
     },
     output: {
