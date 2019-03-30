@@ -1,4 +1,5 @@
 import { CustomElement } from '../CustomElement'
+import { Listen } from '../CustomElement/eventListener'
 // 这里必须写相对路径
 import template from './carouse-index.html'
 import style from './carouse-index.less'
@@ -43,9 +44,6 @@ export class CarouselIndex extends HTMLElement {
     this.__render()
 
     // 动态生成的
-    this.$slidesNavigation.addEventListener('click', this.handelRadioClick)
-    this.$carrousel.addEventListener('mouseenter', this.handelMouseenter)
-    this.$carrousel.addEventListener('mouseleave', this.handelMouseleave)
     this.$slidesNavigation.firstElementChild.classList.add('checked')
 
     this.handelAutoChange()
@@ -65,7 +63,7 @@ export class CarouselIndex extends HTMLElement {
     // 将div撑开
     this.$slides.style.width = `${this.state.list.length * 100}%`
   }
-
+  @Listen('click', '$slidesNavigation')
   handelRadioClick: EventListener = e => {
     if (e.srcElement.matches('.radio')) {
       e.srcElement.parentNode.childNodes.forEach((item: HTMLElement, index: number)=>{
@@ -74,10 +72,11 @@ export class CarouselIndex extends HTMLElement {
     }
   }
   // mouseenter 不会冒泡，到了才触发
+  @Listen('mouseenter', '$carrousel')
   handelMouseenter: EventListener = () => {
     clearInterval(this.state.autoChangeNum)
   }
-
+  @Listen('mouseleave', '$carrousel')
   handelMouseleave: EventListener = () => {
     this.handelAutoChange()
   }

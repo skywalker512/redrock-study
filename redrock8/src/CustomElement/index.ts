@@ -1,3 +1,5 @@
+import { addEventListeners } from '../CustomElement/eventListener'
+
 // export 出去后有代码提示
 export interface CustomElementMetadata {
   tag?: string
@@ -23,9 +25,10 @@ export const CustomElement = (args: CustomElementMetadata) => (target: any) => {
         this.attachShadow({ mode: 'open' })
       }
     }
-    @connectSuper
     connectedCallback() {
       this.___render()
+      super.connectedCallback && super.connectedCallback()
+      addEventListeners(this)
     }
     ___render() {
       const template = document.createElement('template')
@@ -37,12 +40,12 @@ export const CustomElement = (args: CustomElementMetadata) => (target: any) => {
   customElements.define(tag, CustomElement)
 }
 
-function connectSuper (target: object, property: string, descriptor: any): void {
-  const oldValue = descriptor.value
-  descriptor.value = function() {
-    oldValue.apply(this, arguments)
-    Object.getPrototypeOf(target)[property] && Object.getPrototypeOf(target)[property].apply(this)
-  }
-  // 传回去的 descriptor 会在 类中执行，即会绑定相应的 this
-  return descriptor
-}
+// const connectSuper = (target: object, property: string, descriptor: any) => {
+//   const oldValue = descriptor.value
+//   descriptor.value = function() {
+//     oldValue.apply(this, arguments)
+//     Object.getPrototypeOf(target)[property] && Object.getPrototypeOf(target)[property].apply(this)
+//   }
+//   // 传回去的 descriptor 会在 类中执行，即会绑定相应的 this
+//   return descriptor
+// }
