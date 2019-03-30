@@ -25,10 +25,9 @@ export const CustomElement = (args: CustomElementMetadata) => (target: any) => {
     }
     @connectSuper
     connectedCallback() {
-      this.__render()
+      this.___render()
     }
-    @connectSuper
-    __render() {
+    ___render() {
       const template = document.createElement('template')
       const style = `${args.style ? `<style>${args.style}</style>` : ''}`
       template.innerHTML = `${style}${args.template ? args.template : ''}`; // 这里为什么必须要 ; 

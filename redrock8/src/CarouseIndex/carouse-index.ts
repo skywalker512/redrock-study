@@ -15,18 +15,27 @@ import {CarouselItem} from '../Item/item'
 })
 export class CarouselIndex extends HTMLElement {
   _list: { "content": string; "img": string; "name": string; }[]
+  $itmes: HTMLUListElement;
+  $inputs: HTMLDivElement;
+  _activeNum: number;
+  $slidesNavigation: HTMLDivElement;
+
   constructor() {
     super()
     this._list = apiData
+    this._activeNum
   }
   connectedCallback() {
-    console.log(this.getAttribute('time'))
+    this.$itmes = this.shadowRoot.querySelector('ul.slides')
+    this.$slidesNavigation = this.shadowRoot.querySelector('div#slidesNavigation')
+    this.__render()
   }
   __render() {
     this._list.forEach((item, index)=>{
       const $item = <CarouselItem>document.createElement('carouse-item')
       $item._item = item
-      this.appendChild($item)
+      this.$itmes.appendChild($item)
+      this.$slidesNavigation.insertAdjacentHTML('beforeend', `<div class="radio"></div>`)
     })
   }
 }
