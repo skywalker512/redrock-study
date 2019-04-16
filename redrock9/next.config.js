@@ -7,8 +7,14 @@ module.exports = withTypescript({
       '@/pages': path.resolve(`./pages/`),
       '@/styled': path.resolve(`./styled/`),
       '@/components': path.resolve(`./components/`),
+      '@/assets': path.resolve(`./assets/`),
     }
-    config.resolve.alias = {...config.resolve.alias, ...alias}
+    const rules = [{
+      test: /\.svg$/,
+      loader: '@svgr/webpack'
+    }]
+    config.resolve.alias = { ...config.resolve.alias, ...alias }
+    config.module.rules = [...config.module.rules, ...rules]
     return config
   }
 })
