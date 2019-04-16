@@ -1,6 +1,13 @@
-import * as React from "react";
+import React, { Fragment } from "react"
 
-import { Title } from '@/styled/index.ts'
+import { GlobalStyle } from '@/styled/global'
+import { Header }  from '@/components/index'
 
-
-export default () => <Title>My page</Title>
+export default () => {
+  return (
+    <Fragment>
+      <GlobalStyle />
+          <Header></Header>
+    </Fragment>
+  )
+}
