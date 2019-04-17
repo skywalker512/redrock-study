@@ -3,7 +3,7 @@ import styled from "styled-components"
 export const Header = styled.header`
   height: 2.5rem;
   background-color: #2c3e50;
-  min-width: 75rem;
+  min-width: 78rem;
 `
 export const Top = styled.nav`
   display: flex;
