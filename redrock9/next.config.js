@@ -7,7 +7,7 @@ module.exports = withTypescript({
       '@/pages': path.resolve(`./pages/`),
       '@/styled': path.resolve(`./styled/`),
       '@/components': path.resolve(`./components/`),
-      '@/assets': path.resolve(`./assets/`),
+      '@/static': path.resolve(`./static/`),
     }
     const rules = [{
       test: /\.svg$/,

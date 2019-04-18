@@ -29,8 +29,8 @@
       "@/components/*": [
         "./components/*"
       ],
-      "@/assets/*": [
-        "./assets/*"
+      "@/static/*": [
+        "./static/*"
       ],
     }
   },

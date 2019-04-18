@@ -9,13 +9,13 @@ import {
 
 } from './styled'
 
-import UserIcon from '@/assets/svg/user.svg'
-import FileIcon from '@/assets/svg/file-o.svg'
-import FaceBookIcon from '@/assets/svg/facebook.svg'
-import TwitterIcon from '@/assets/svg/twitter.svg'
-import TumblrIcon from '@/assets/svg/tumblr.svg'
-import PinterestIcon from '@/assets/svg/pinterest.svg'
-import SearchIcon from '@/assets/svg/search.svg'
+import UserIcon from '@/static/svg/user.svg'
+import FileIcon from '@/static/svg/file-o.svg'
+import FaceBookIcon from '@/static/svg/facebook.svg'
+import TwitterIcon from '@/static/svg/twitter.svg'
+import TumblrIcon from '@/static/svg/tumblr.svg'
+import PinterestIcon from '@/static/svg/pinterest.svg'
+import SearchIcon from '@/static/svg/search.svg'
 
 export default () => {
   return (
