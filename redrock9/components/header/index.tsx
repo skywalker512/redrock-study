@@ -21,18 +21,20 @@ export default () => {
   return (
     <Header>
       <Top>
-        <div>
-          <a><UserIcon /><span>Agent Login</span></a>
-          <a><UserIcon /><span>Customer Login</span></a>
-          <a><FileIcon /><span>Customer Login<span className='link'>Register?</span></span></a>
-          <a><span>Call Us Now: 815-123-4567</span></a>
-        </div>
-        <div>
-          <a><FaceBookIcon /></a>
-          <a><TwitterIcon /></a>
-          <a><TumblrIcon /></a>
-          <a><PinterestIcon /></a>
-        </div>
+        <nav>
+          <div>
+            <a><UserIcon /><span>Agent Login</span></a>
+            <a><UserIcon /><span>Customer Login</span></a>
+            <a><FileIcon /><span>Customer Login<span className='link'>Register?</span></span></a>
+            <a><span>Call Us Now: 815-123-4567</span></a>
+          </div>
+          <div>
+            <a><FaceBookIcon /></a>
+            <a><TwitterIcon /></a>
+            <a><TumblrIcon /></a>
+            <a><PinterestIcon /></a>
+          </div>
+        </nav>
       </Top>
       <Nav>
         <Logo>V<span>O</span>YAGE</Logo>

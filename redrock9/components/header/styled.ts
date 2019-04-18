@@ -1,19 +1,32 @@
 import styled from "styled-components"
 
 export const Header = styled.header`
-  height: 2.5rem;
-  background-color: #2c3e50;
   min-width: 78rem;
+  @media (max-width: 78rem) {
+    min-width: 68rem;
+  }
+  @media (max-width: 68rem) {
+    min-width: 58rem;
+  }
 `
-export const Top = styled.nav`
-  display: flex;
-  justify-content: space-between;
-  height: 100%;
+export const Top = styled.div`
+  background-color: #2c3e50;
+  height: 2.5rem;
   font-size: 0.75rem;
-  width: 75rem;
   line-height: 2.5rem;
-  margin: auto;
   color: #fff;
+  nav {
+    @media (max-width: 78rem) {
+      width: 65rem;
+    }
+    @media (max-width: 68rem) {
+      width: 55rem;
+    }
+    width: 75rem;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+  }
   svg {
     margin-right: 0.5rem;
   }
@@ -52,6 +65,12 @@ export const Top = styled.nav`
 export const Nav = styled.nav`
   height: 5.6rem;
   width: 75rem;
+  @media (max-width: 78rem) {
+    width: 65rem;
+  }
+  @media (max-width: 68rem) {
+    width: 55rem;
+  }
   margin: 0 auto;
   display: flex;
   align-items: center;
