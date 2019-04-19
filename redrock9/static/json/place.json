@@ -1,0 +1,37 @@
+[
+  {
+    "img": "./static/img/Layer_14.png",
+    "name": "statue of liberty - USA",
+    "state": "New Destination!"
+  },
+  {
+    "img": "./static/img/Layer_8.png",
+    "name": "Spectacular Seychelle",
+    "state": "New Destination!"
+  },
+  {
+    "img": "./static/img/Layer_4.png",
+    "name": "Hong Kong & Macau",
+    "state": "Bonus Extras!"
+  },
+  {
+    "img": "./static/img/Layer_6.png",
+    "name": "Vietnam Highlights",
+    "state": "New Destination!"
+  },
+  {
+    "img": "./static/img/Layer_7.png",
+    "name": "Spectacular Seychelles",
+    "state": "New Destination!"
+  },
+  {
+    "img": "./static/img/Layer_13.png",
+    "name": "Dubai",
+    "state": "New Destination!"
+  },
+  {
+    "img": "./static/img/Layer_4.png",
+    "name": "Hong Kong & Maca",
+    "state": "Bonus!"
+  }
+]
