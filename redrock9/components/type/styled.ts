@@ -2,6 +2,7 @@ import styled from 'styled-components'
 
 export const Place = styled.section`
   padding: 5rem 0;
+  background-color: blue;
 `
 
 export const Title = styled.div`
@@ -21,4 +22,8 @@ export const Controller = styled.div`
   margin-top: 2rem;
   width: 100%;
   display: flex;
+  justify-content: space-around;
+  img {
+    width: 5rem;
+  }
 `

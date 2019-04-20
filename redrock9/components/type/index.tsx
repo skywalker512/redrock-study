@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState, Fragment } from 'react'
+import useDataApi from '@/utils/useDataApi'
 
 import {
   Place,
@@ -13,34 +14,7 @@ interface JsonData {
 
 export default () => {
   const [data, setData] = useState<JsonData[]>([])
-  const [url] = useState<string>('./static/json/type.json')
-  const [isLoading, setIsLoading] = useState<boolean>(false)
-  const [isError, setIsError] = useState<boolean>(false)
-
-  useEffect(() => {
-    let didCancel = false
-
-    const fetchData = async () => {
-      setIsError(false)
-      setIsLoading(true)
-
-      try {
-        const result = await fetch(url)
-        if (!didCancel) {
-          result.json().then(res => setData(res))
-        }
-      } catch (error) {
-        if (!didCancel) {
-          setIsError(true)
-        }
-      }
-      setIsLoading(false)
-    }
-    fetchData()
-    return () => {
-      didCancel = true
-    }
-  }, [url])
+  const { isError, isLoading } = useDataApi('./static/json/type.json', setData)
   return (
     <Place>
       <Title>
@@ -52,7 +26,13 @@ export default () => {
         <div>Loading ...</div>
       ) : (
           <Controller>
-            {data.map(item => <Item {...item} key={item.name}></Item>)}
+            {data.map(item => (
+              <div key={item.name}>
+                <img src={item.img}/>
+                <div>{item.name}</div>
+              </div>
+              
+            ))}
           </Controller>
         )}
     </Place>
