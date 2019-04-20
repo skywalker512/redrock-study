@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Cruise",
+    "img": "./static/svg/Cruise.svg"
+  },
+  {
+    "name": "City Breaks",
+    "img": "./static/svg/City.svg"
+  },
+  {
+    "name": "Honeymoon",
+    "img": "./static/svg/Honeymoon.svg"
+  },
+  {
+    "name": "Adventure",
+    "img": "./static/svg/Adventure.svg"
+  },
+  {
+    "name": "Safari",
+    "img": "./static/svg/Safari.svg"
+  },
+  {
+    "name": "Beach",
+    "img": "./static/svg/Beach.svg"
+  }
+]
