@@ -32,6 +32,9 @@
       "@/static/*": [
         "./static/*"
       ],
+      "@/utils/*": [
+        "./utils/*"
+      ],
     }
   },
   "exclude": [
