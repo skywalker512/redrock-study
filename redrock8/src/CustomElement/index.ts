@@ -1,4 +1,4 @@
-import { addEventListeners } from '../CustomElement/eventListener'
+import { addEventListeners } from './eventListener'
 
 // export 出去后有代码提示
 export interface CustomElementMetadata {
