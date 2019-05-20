@@ -14,14 +14,16 @@ export const Listen = (eventName: string, selector?: string) => {
 };
 
 export const addEventListeners = (target: any) => {
-  if (target.constructor.listeners) {
-    for (const listener of target.constructor.listeners as Array<ListenerMetadata>) {
-      const eventTarget = listener.selector ? target[listener.selector] : target
-      if (eventTarget) {
-        eventTarget.addEventListener(listener.eventName, (e: EventListener) => {
-          listener.handler.call(target, e)
-        })
-      }
+  if (!target.constructor.listeners) {
+    return;
+  }
+
+  for (const listener of target.constructor.listeners as Array<ListenerMetadata>) {
+    const eventTarget = listener.selector ? target[listener.selector] : target;
+    if (eventTarget) {
+      eventTarget.addEventListener(listener.eventName, (e: EventListener) => {
+        listener.handler.call(target, e)
+      })
     }
   }
-}
+};
