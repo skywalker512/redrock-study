@@ -22,6 +22,9 @@
     },
     "dependencies": {
         "css-loader": "^2.1.1",
+        "eslint": "^5.16.0",
+        "eslint-config-airbnb-base": "^13.1.0",
+        "eslint-plugin-import": "^2.17.2",
         "less": "^3.9.0",
         "less-loader": "^4.1.0",
         "raw-loader": "^2.0.0",
