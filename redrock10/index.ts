@@ -1,11 +1,11 @@
-function checkedType(target: Object) {
+function checkedType(target: any) {
   return Object.prototype.toString.call(target).slice(8, -1)
 }
 //实现深度克隆---对象/数组
-function clone(target: Object | Array<any> | any) {
+function clone(target: any) {
   //判断拷贝的数据类型
   //初始化变量result 成为最终克隆的数据
-  let result: Object | Array<any> | any, targetType = checkedType(target)
+  let result: any, targetType = checkedType(target)
   if (targetType === 'Object') {
     result = {}
   } else if (targetType === 'Array') {
