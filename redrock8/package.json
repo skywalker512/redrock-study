@@ -8,7 +8,8 @@
         "build": "webpack",
         "prodbuild": "webpack --config webpack.prod.js",
         "watch": "webpack --watch",
-        "start": "http-server dist"
+        "start": "http-server dist",
+        "eslint": "eslint src --ext .ts"
     },
     "keywords": [],
     "author": "",
@@ -21,10 +22,12 @@
         "webpack-cli": "^3.2.1"
     },
     "dependencies": {
+        "@typescript-eslint/eslint-plugin": "1.0.0",
         "css-loader": "^2.1.1",
         "eslint": "^5.16.0",
         "eslint-config-airbnb-base": "^13.1.0",
-        "eslint-plugin-import": "^2.17.2",
+        "eslint-config-airbnb-typescript": "^4.0.0",
+        "eslint-plugin-import": "2.14.0",
         "less": "^3.9.0",
         "less-loader": "^4.1.0",
         "raw-loader": "^2.0.0",

@@ -1,7 +1,7 @@
-import { CustomElement } from '../CustomElement'
+import { CustomElement } from '../CustomElement';
 // 这里必须写相对路径
-import template from './item.html'
-import style from './item.less'
+import template from './item.html';
+import style from './item.less';
 
 @CustomElement({
   tag: 'carouse-item',
@@ -9,26 +9,25 @@ import style from './item.less'
   style,
   shadow: true,
 })
-export class CarouselItem extends HTMLElement {
-  constructor() {
-    super()
-  }
-  
-  _item: { "content": string; "img": string; "name": string; };
+export default class CarouselItem extends HTMLElement {
+  item: { 'content': string; 'img': string; 'name': string; };
+
   $content: HTMLQuoteElement;
+
   $img: HTMLImageElement;
+
   $name: HTMLSpanElement;
 
   connectedCallback() {
     this.$content = this.shadowRoot.querySelector('q');
     this.$img = this.shadowRoot.querySelector('img');
     this.$name = this.shadowRoot.querySelector('span.author-name');
-    this.__render()
+    this.render();
   }
 
-  __render() {
-    this.$content.textContent = this._item.content;
-    this.$img.src = this._item.img;
-    this.$name.textContent = this._item.name
+  render() {
+    this.$content.textContent = this.item.content;
+    this.$img.src = this.item.img;
+    this.$name.textContent = this.item.name;
   }
 }

@@ -1,2 +1,2 @@
-import './CarouseIndex/carouse-index.ts'
-import './Item/item'
+import './CarouseIndex/carouse-index';
+import './Item/item';
