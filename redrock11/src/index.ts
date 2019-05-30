@@ -1,6 +1,8 @@
 import Router from './router'
+import Mvvm from './mvvm'
 
 const router = new Router()
+const mvvm = new Mvvm({ el: '#app', data: { nameText: '姓名' } })
 
 const element = {
   nameEle: <HTMLButtonElement>document.querySelector('#name'),
