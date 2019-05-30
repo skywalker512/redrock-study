@@ -29,7 +29,7 @@ const addEventLisnter = () => {
 }
 
 const handelUrlChange = () => {
-  makeViewChange(location.pathname.replace(/^\//, ''))
+  makeViewChange(location.pathname.split('/')[location.pathname.split('/').length-1])
 }
 
 const makeViewChange = (path: string) => {

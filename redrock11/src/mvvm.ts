@@ -109,7 +109,6 @@ class Dep {
   }
   // 发布函数
   notify() {
-    console.log(this.subs)
     this.subs.filter(item => typeof item !== 'string').forEach(sub => sub.update())
   }
 }
