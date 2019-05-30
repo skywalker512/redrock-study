@@ -1,4 +1,4 @@
-import { IData } from "./mvvm";
+import { IData, Watcher } from "./mvvm";
 
 export default class Compile {
   vm: IData
@@ -19,11 +19,15 @@ export default class Compile {
       let reg = /\{\{\s*(.*?)\s*\}\}/g // 定义匹配正则
       if (node.nodeType === 3 && reg.test(txt)) {
         // 如果匹配到的话，就替换文本
-        node.textContent = txt.replace(reg, (matched, placeholder) => {
-          return placeholder.split('.').reduce((obj, key) => {
-            return obj[key] // 例如：去vm.makeUp.one对象拿到值
-          }, vm)
-        })
+        replaceTxt()
+        function replaceTxt() {
+          node.textContent = txt.replace(reg, (matched, placeholder) => {
+            new Watcher(vm, placeholder, replaceTxt);   // 监听变化，进行匹配替换内容
+            return placeholder.split('.').reduce((val: IData, key:string) => {
+              return val[key]
+            }, vm)
+          })
+        }
       }
       // 如果还有字节点，并且长度不为0 
       if (node.childNodes && node.childNodes.length) {

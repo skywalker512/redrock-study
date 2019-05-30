@@ -9,6 +9,11 @@ export interface IData {
   [propName: string]: any
 }
 
+export interface IDep {
+  target: Watcher
+  exp: string
+}
+
 export default class {
   constructor(options: IOptions = { el: 'body', data: {} }) {
     this.data = options.data || {}
@@ -72,15 +77,26 @@ class Observe {
     let dep = this.dep
     return new Proxy(data, {
       get: (target, key, receiver) => {
+        if ($dep.target) {
+          // 如果之前是push过的，就不用重复push了
+          if (!dep.subs.includes($dep.exp)) {
+            dep.addSub($dep.exp) // 教程里的 bug, 需要将 $dep.exp push 进去, 判断条件
+            // $dep.target 包含 exp, 相应的函数，以及 vm
+            dep.addSub($dep.target) // 把Dep.target push到sub数组里面，订阅
+          }
+        }
         return Reflect.get(target, key, receiver)
       },
       set: (target, key, value) => {
         const result = Reflect.set(target, key, observe(value)) // 对于新添加的对象也要进行添加observe
+        dep.notify() // 通知有东西改变了, notify 就执行相应的函数
         return result
       }
     })
   }
 }
+
+const $dep: IDep = { target: null, exp: null }
 
 class Dep {
   constructor() {
@@ -93,6 +109,37 @@ class Dep {
   }
   // 发布函数
   notify() {
-    this.subs.filter(item => typeof item !== 'string').forEach(sub=> sub.update())
+    console.log(this.subs)
+    this.subs.filter(item => typeof item !== 'string').forEach(sub => sub.update())
+  }
+}
+
+export class Watcher {
+  vm: IData
+  exp: string
+  fn: Function
+  constructor(vm: IData, exp: string, fn: Function) {
+    this.fn = fn // 传进来的fn
+    this.vm = vm // 传进来的vm
+    this.exp = exp // 传进来的匹配到exp 例如："language"，"makeUp.one"
+    $dep.exp = exp // 给Dep类挂载一个exp
+    $dep.target = this // 给Dep类挂载一个watcher对象，跟新的时候就用到了
+    let arr = exp.split('.')
+    let val = vm
+    arr.forEach(key => {
+      val = val[key] // 获取值，这时候会粗发vm.proxy的get()函数，get()里面就添加addSub订阅函数
+    })
+    $dep.target = null // 添加了订阅之后，把Dep.target清空
+  }
+  update() {
+    // 设置值会触发vm.proxy.set函数，然后调用发布的notify，
+    // 最后调用update，update里面继续调用this.fn(val)
+    let exp = this.exp
+    let arr = exp.split('.')
+    let val = this.vm
+    arr.forEach(key => {
+      val = val[key]
+    })
+    this.fn(val)
   }
 }

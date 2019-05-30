@@ -2,7 +2,7 @@ import Router from './router'
 import Mvvm from './mvvm'
 
 const router = new Router()
-const mvvm = new Mvvm({ el: '#app', data: { nameText: '姓名' } })
+const mvvm = new Mvvm({ el: '#app', data: { nameText: 'skywalker', ageText: 20 } })
 
 const element = {
   nameEle: <HTMLButtonElement>document.querySelector('#name'),
@@ -36,10 +36,18 @@ const makeViewChange = (path: string) => {
   const { canChangeEle } = element
   switch (path) {
     case 'name':
-      canChangeEle.innerHTML = `<div>name</div>`
+      canChangeEle.innerHTML = `<input id="change-name"  placeholder="修改名字"></input>`
+      document.querySelector('#change-name').addEventListener('keyup', (e)=>{
+        const ele = <HTMLInputElement>e.target
+        mvvm.nameText = ele.value
+      })
       break;
     case 'age':
-      canChangeEle.innerHTML = `<div>age</div>`
+      canChangeEle.innerHTML = `<input id="change-age" placeholder="修改年龄"></input>`
+      document.querySelector('#change-age').addEventListener('keyup', (e)=>{
+        const ele = <HTMLInputElement>e.target
+        mvvm.ageText = ele.value
+      })
       break;
     default:
       break;
